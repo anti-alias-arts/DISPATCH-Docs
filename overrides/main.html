@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{# Browser tab title: "Page - DISPATCH Documentation" (the header shows the logo + "Documentation") #}
+{% block htmltitle %}
+  {% if page.meta and page.meta.title %}
+    <title>{{ page.meta.title }} - DISPATCH Documentation</title>
+  {% elif page.title and not page.is_homepage %}
+    <title>{{ page.title | striptags }} - DISPATCH Documentation</title>
+  {% else %}
+    <title>DISPATCH Documentation</title>
+  {% endif %}
+{% endblock %}

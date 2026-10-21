@@ -1,0 +1,22 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v4
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      # pinned below MkDocs 2.0, which drops theme overrides (overrides/main.html)
+      - run: pip install "mkdocs<2" "mkdocs-material<10"
+      - run: mkdocs gh-deploy --force

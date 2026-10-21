@@ -1,0 +1,58 @@
+site_name: DISPATCH Documentation   # becomes "Documentation" once a logo is in the header, like AAVJ
+theme:
+  name: material
+  custom_dir: overrides          # browser tab title "... - DISPATCH Documentation"
+  # TODO: add Images/dispatch-logo.png, then uncomment (and shorten site_name above)
+  # logo: Images/dispatch-logo.png
+  # favicon: Images/dispatch-logo.png
+  font: false                    # Arial, like the DISPATCH interface (see stylesheets/dispatch.css)
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    scheme: dispatch             # DISPATCH dark theme, colours in stylesheets/dispatch.css
+    primary: custom
+    accent: custom
+
+extra_css:
+  - stylesheets/dispatch.css
+
+# Language selector and social links (as in AAVJ-Docs) are left out until
+# translations and real profile links exist.
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Interface: interface.md
+  - Scenes & Outputs: scenes-outputs.md
+  - Timeline: timeline.md
+  - Settings: settings.md
+  - Messages & AAVJ: messages.md
+  - Building Scenes: building-scenes.md
+  - Troubleshooting: troubleshooting.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+copyright: |
+  &copy; 2026 <a href="https://github.com/anti-alias-arts" target="blank" rel="noopener">Anti-alias Productions, LLC </a>
