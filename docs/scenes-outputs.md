@@ -16,15 +16,15 @@ Only scenes that are live, transitioning in, or toggled on are running. Every ot
 
 ## Output Groups
 
-An output group plays one scene at a time and transitions between them.
+An output group plays one scene at a time and transitions between them. Each of its outputs takes its own operator from the scene and transitions it in its own way:
 
-Each group names the operator it takes from the live scene, `out1` by default. What kind of operator it finds decides how the group transitions:
-
-| Operator | Transition |
+| Output type | Transition |
 |---|---|
-| TOP (video) | Crossfade |
-| POP (points, lasers) | Blend between point sets |
-| CHOP or DAT (data, DMX) | Switches at the start of the Go, never crossfades |
+| TOP (video) | Crossfade over the output's own **Transition** time, at its own **Width** × **Height** |
+| POP (points, lasers) | Blend between point sets over the output's own **Transition** time |
+| CHOP, SOP or DAT (data, DMX, messages) | Switches at the start of the Go, never crossfades |
+
+A Go is finished when the longest transition in the group ends.
 
 !!! note
     DISPATCH doesn't layer scenes. For layered video, send to AAVJ.
@@ -34,27 +34,31 @@ Each group names the operator it takes from the live scene, `out1` by default. W
 The **Output Groups** panel lists every group. Each row shows the group's colour, its name and one small square per output, coloured by output type.
 
 - **Add a group:** press **+**. The group opens straight away in the output group window.
-- **Edit a group:** click its name or the pencil icon.
+- **Edit a group:** click its pencil icon.
+- **Reorder groups:** drag a group by its name onto another group. It takes that group's place; a grey line shows where it will land.
 - **Turn a group's outputs on or off:** press the power button. Green means all of its outputs are on, amber means some are and grey means none are.
 - **Remove a group:** press **×**, then press **Delete?** to confirm. Its outputs are removed with it.
 
 ### The Output Group Window
 
-Changes in the window take effect as you make them.
+The output group window opens as its own window, on top of DISPATCH, so you can move it anywhere, even when DISPATCH only fills part of the screen. Changes in the window take effect as you make them.
 
-The top of the window holds the group's settings:
+The top row holds the group's **Name** and **Color**. The colour shows in the panel and on the group's tiles.
 
+Below that, the group's outputs are listed on the left. Click one to edit it on the right, press **+** to add one, or press its **×** twice to remove it.
+
+The right column holds the selected output's settings:
+
+- **Output Format** and **Output Method**: what kind of output it is, and how it's sent.
+- **Out Op**: the operator name it takes from each scene (`out1` by default).
 - **Name**
-- **Out Op**: the operator name to take from each scene (`out1` by default).
-- **Transition (s)**: in seconds, 1 s by default. 0 is a cut.
-- **Width** and **Height**: 1920 × 1080 by default.
-- **Color**: the group's colour in the panel and on its tiles.
-
-Below the settings, the group's outputs are listed on the left. Click one to edit it on the right, press **+** to add one, or press its **×** twice to remove it.
+- **Transition (s)**: in seconds, 1 s by default. 0 is a cut. Only shown for video and points outputs.
+- **Width** and **Height**: the size of the crossfade, 1920 × 1080 by default. Only shown for video outputs.
+- The device's own settings.
 
 When you close the window:
 
-- **Done**, **×**, **Esc** or a click outside the window keeps everything.
+- **Done**, **×**, **Esc** or the window's close button keeps everything.
 - **Cancel** is only there for a group you've just added. It removes the new group and its outputs again.
 
 > **TODO (Jack): screenshot of the Output Groups panel and the output group window.**
